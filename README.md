@@ -10,7 +10,7 @@ Features
 - Add new job applications  
 - Edit existing jobs  
 - Delete unwanted entries  
-- Data is stored locally using `localStorage`  
+- Data is stored locally using `local storage`  
 - Built with React, React Router, and Hooks (`useState`, `useEffect`)
 
 
@@ -21,7 +21,4 @@ Tech Stack
 -Storage: Browser LocalStorage
 -Styling: Inline CSS (can be upgraded to Tailwind or MUI)
 
-
-
-## 📁 Folder Structure
 
