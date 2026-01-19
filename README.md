@@ -20,5 +20,8 @@ Tech Stack
 -Routing: React Router DOM
 -Storage: Browser LocalStorage
 -Styling: Inline CSS (can be upgraded to Tailwind or MUI)
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 80b84dbe17710fb476c026c23fbb7b1552a58c9a
