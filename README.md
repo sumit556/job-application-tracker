@@ -39,12 +39,11 @@ Not implemented (see [Tradeoffs](#tradeoffs-and-limitations)):
 - Merging imported data with existing applications.
 
 ## Screenshots
-
 No screenshots are committed to the repository yet. Add images under `docs/screenshots/` and replace this section with a table such as:
 
 | Dashboard | Add application |
 | :---: | :---: |
-| _placeholder_ | _placeholder_ |
+| ![dashboard](docs/screenshots/dashboard.png) | _pending_ |
 
 ## Tech stack
 
