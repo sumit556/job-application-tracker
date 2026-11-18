@@ -194,7 +194,7 @@ The static build is written to `build/`.
 
 ### Live demo
 
-There is no live deployment yet, and the repository does not contain hosting configuration. To deploy, build the app with `npm run build` and host the `build/` folder on any static host, with unknown paths rewritten to `index.html` so client‑side routes work.
+There is a live deployment at https://sumit-job-tracker.vercel.app
 
 ### Testing
 
