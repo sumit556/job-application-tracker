@@ -24,18 +24,37 @@ function EditJob() {
     navigate("/");
   };
 
-  if (!loaded) return <p>Loading...</p>;
+  if (!loaded) return <p className="page-subtitle">Loading...</p>;
 
   if (!job) {
     return (
-      <div style={{ padding: "20px" }}>
-        <p>Job application not found.</p>
-        <Link to="/">Back to dashboard</Link>
+      <div className="empty-state">
+        <h1 className="empty-state__title">Job application not found.</h1>
+        <p className="empty-state__text">
+          It may have been deleted, or the link may be incorrect.
+        </p>
+        <Link to="/" className="button button-primary">
+          Back to dashboard
+        </Link>
       </div>
     );
   }
 
-  return <JobForm onSubmit={updateJob} initialData={job} />;
+  return (
+    <div>
+      <div className="page-heading">
+        <div>
+          <h1 className="page-title">Edit application</h1>
+          <p className="page-subtitle">
+            Update the company, role, or current status.
+          </p>
+        </div>
+      </div>
+      <div className="card">
+        <JobForm onSubmit={updateJob} initialData={job} />
+      </div>
+    </div>
+  );
 }
 
 export default EditJob;

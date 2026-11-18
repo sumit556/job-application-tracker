@@ -12,7 +12,21 @@ function AddJob() {
     navigate("/");
   };
 
-  return <JobForm onSubmit={addJob} />;
+  return (
+    <div>
+      <div className="page-heading">
+        <div>
+          <h1 className="page-title">Add application</h1>
+          <p className="page-subtitle">
+            Save a role you have applied to and track its status.
+          </p>
+        </div>
+      </div>
+      <div className="card">
+        <JobForm onSubmit={addJob} />
+      </div>
+    </div>
+  );
 }
 
 export default AddJob;

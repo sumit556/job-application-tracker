@@ -10,7 +10,7 @@ beforeEach(() => {
 });
 
 const addJob = async ({ company, title, status }) => {
-  fireEvent.click(screen.getByRole("link", { name: /add job/i }));
+  fireEvent.click(screen.getByRole("link", { name: /add application/i }));
   fireEvent.change(await screen.findByPlaceholderText("Company"), {
     target: { value: company },
   });

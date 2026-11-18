@@ -1,6 +1,4 @@
-// src/pages/Dashboard.js
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { getJobs, saveJobs } from "../utils/storage";
 import JobList from "../components/JobList";
 
@@ -20,13 +18,18 @@ function Dashboard() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>My Job Applications</h2>
-      <Link to="/add" style={{ display: "inline-block", marginBottom: "15px" }}>
-        Add Job
-      </Link>
+    <div>
+      <div className="page-heading">
+        <div>
+          <h1 className="page-title">My applications</h1>
+          <p className="page-subtitle">
+            {jobs.length === 0
+              ? "Keep track of every role you apply to."
+              : `${jobs.length} application${jobs.length === 1 ? "" : "s"} tracked.`}
+          </p>
+        </div>
+      </div>
 
-      {/* 👇 Only one component handles displaying jobs */}
       <JobList jobs={jobs} onDelete={deleteJob} />
     </div>
   );

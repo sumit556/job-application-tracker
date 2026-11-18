@@ -16,6 +16,8 @@ Implemented:
 - Edit an existing application (the form is pre-filled)
 - Delete an application
 - Track status with four values: `Applied`, `Interview`, `Offer`, `Rejected`
+- Color-coded status badges in the application list
+- Responsive layout with a shared header on every page
 - Persist applications in `localStorage` across page reloads
 - Empty state when there are no applications
 - Not-found message for an invalid `/edit/:id` URL
@@ -43,7 +45,7 @@ No screenshots are committed to the repository yet. Add images under `docs/scree
 - **React Router DOM 7** for client-side routing
 - **Create React App** (`react-scripts 5`) for development and production builds
 - **Jest + React Testing Library** for tests
-- **Plain CSS and inline styles** for styling
+- **Plain CSS with custom properties** for styling (single `src/App.css`)
 - **Browser `localStorage`** for persistence
 
 No backend, database, API, state-management library, or charting library is used.
@@ -55,11 +57,12 @@ The app is a client-side SPA. `src/index.js` mounts `App`, which owns the router
 ```text
 src/index.js
   -> App.js (BrowserRouter)
+       -> Header (app shell, visible on every route)
        -> /          Dashboard
        -> /add       AddJob
        -> /edit/:id  EditJob
 
-Dashboard -> JobList (list + delete button)
+Dashboard -> JobList -> StatusBadge
 AddJob    -> JobForm -> saveJobs()
 EditJob   -> JobForm -> saveJobs()
 
@@ -92,14 +95,18 @@ All pages read/write through src/utils/storage.js
 
 ```text
 public/
+  favicon.svg
   index.html
   manifest.json
 src/
-  App.js                 # Router and route definitions
+  App.css                # Design tokens and all component styles
+  App.js                 # Router, header, and route definitions
   App.test.js            # Integration tests
   components/
+    Header.js            # App shell header and add-application link
     JobForm.js           # Shared create/edit form
     JobList.js           # Application list and delete action
+    StatusBadge.js       # Color-coded status pill
   pages/
     Dashboard.js         # List page
     AddJob.js            # Create page
@@ -108,7 +115,6 @@ src/
     storage.js           # localStorage read/write
   index.js               # React entry point
   setupTests.js          # Testing Library and polyfills
-  index.css
 ```
 
 ## Getting started
@@ -170,7 +176,7 @@ Because this project uses Create React App's Jest 27 with React Router 7, the te
 - **No search, filtering, sorting, or dashboard metrics.** The page named `Dashboard` is a list view, not an analytics dashboard.
 - **Simple identifiers.** `Date.now()` is adequate for a single-user demo but is not a robust ID strategy.
 - **No delete confirmation or undo.** Deleting removes the entry immediately.
-- **Styling is inline and minimal.** There is no design system, responsive layout work, or theming.
+- **Styling is a single hand-written CSS file.** There is no design system, component library, or theming.
 - **Older tooling.** Create React App is in maintenance mode; the Router 7 test shims exist because of the combination of CRA's Jest 27 and React Router 7.
 
 ## What I'd do next

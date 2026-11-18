@@ -1,49 +1,46 @@
 // src/components/JobList.js
 import { Link } from "react-router-dom";
+import StatusBadge from "./StatusBadge";
 
 function JobList({ jobs, onDelete }) {
   if (!jobs || jobs.length === 0) {
-    return <p>No job applications yet.</p>;
+    return (
+      <div className="empty-state">
+        <h2 className="empty-state__title">No job applications yet.</h2>
+        <p className="empty-state__text">
+          Add your first application to start tracking your progress.
+        </p>
+        <Link to="/add" className="button button-primary">
+          Add your first application
+        </Link>
+      </div>
+    );
   }
 
   return (
-    <div>
+    <div className="job-list">
       {jobs.map((job) => (
-        <div
-          key={job.id}
-          style={{
-            border: "1px solid #ccc",
-            padding: "10px",
-            margin: "10px 0",
-            borderRadius: "8px",
-          }}
-        >
-          <h3>{job.company}</h3>
-          <p>
-            {job.title} — <strong>{job.status}</strong>
-          </p>
-          <div>
-            <Link
-              to={`/edit/${job.id}`}
-              style={{ marginRight: "10px", color: "#007bff", textDecoration: "none" }}
-            >
-              Edit
-            </Link>
-            <button
-              onClick={() => onDelete(job.id)}
-              style={{
-                backgroundColor: "#ff4d4f",
-                color: "white",
-                border: "none",
-                borderRadius: "4px",
-                padding: "5px 10px",
-                cursor: "pointer",
-              }}
-            >
-              Delete
-            </button>
+        <article key={job.id} className="job-card">
+          <div className="job-card__main">
+            <h2 className="job-card__company">{job.company}</h2>
+            <p className="job-card__title">{job.title}</p>
           </div>
-        </div>
+          <div className="job-card__meta">
+            <StatusBadge status={job.status} />
+            <div className="job-card__actions">
+              <Link className="text-link" to={`/edit/${job.id}`}>
+                Edit
+              </Link>
+              <button
+                type="button"
+                className="button button-danger"
+                onClick={() => onDelete(job.id)}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </article>
       ))}
     </div>
   );
