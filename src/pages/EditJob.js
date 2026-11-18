@@ -1,6 +1,7 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import JobForm from "../components/JobForm";
+import { buildActivityChanges } from "../utils/activity";
 import { getJobs, saveJobs } from "../utils/storage";
 
 function EditJob() {
@@ -17,10 +18,21 @@ function EditJob() {
   }, [id]);
 
   const updateJob = (updatedJob) => {
-    const jobs = getJobs().map((j) =>
-      j.id === Number(id) ? { ...updatedJob, id: Number(id) } : j
+    const jobs = getJobs();
+    const existingJob = jobs.find((j) => j.id === Number(id)) || job;
+    const changes = buildActivityChanges(existingJob, updatedJob);
+
+    const nextJobs = jobs.map((j) =>
+      j.id === Number(id)
+        ? {
+            ...updatedJob,
+            id: Number(id),
+            activity: [...(existingJob.activity || []), ...changes],
+          }
+        : j
     );
-    saveJobs(jobs);
+
+    saveJobs(nextJobs);
     navigate("/");
   };
 
@@ -51,7 +63,12 @@ function EditJob() {
         </div>
       </div>
       <div className="card">
-        <JobForm onSubmit={updateJob} initialData={job} />
+        <JobForm
+          onSubmit={updateJob}
+          initialData={job}
+          existingJobs={getJobs()}
+          currentId={job.id}
+        />
       </div>
     </div>
   );
