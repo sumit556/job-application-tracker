@@ -43,7 +43,7 @@ No screenshots are committed to the repository yet. Add images under `docs/scree
 
 | Dashboard | Add application |
 | :---: | :---: |
-| ![dashboard](docs/screenshots/dashboard.png) | _pending_ |
+| ![dashboard](docs/screenshots/dashboard.png) | ![add-job](docs/screenshots/add-job.png) |
 
 ## Tech stack
 
